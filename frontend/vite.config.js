@@ -24,11 +24,24 @@ export default defineConfig({
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'charts':       ['recharts'],
-          'forms':        ['react-hook-form', '@hookform/resolvers', 'zod'],
-          'pdf':          ['jspdf', 'jspdf-autotable'],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react-router-dom') || id.includes('react-dom') || id.includes('/react/')) {
+              return 'react-vendor';
+            }
+
+            if (id.includes('recharts')) {
+              return 'charts';
+            }
+
+            if (id.includes('react-hook-form') || id.includes('@hookform/resolvers') || id.includes('zod')) {
+              return 'forms';
+            }
+
+            if (id.includes('jspdf') || id.includes('jspdf-autotable')) {
+              return 'pdf';
+            }
+          }
         },
       },
     },
