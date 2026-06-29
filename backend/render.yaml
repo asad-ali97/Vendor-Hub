@@ -1,0 +1,40 @@
+services:
+  - type: web
+    name: vendorhub-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: MONGODB_URI
+        sync: false          # Set manually in Render dashboard
+      - key: JWT_SECRET
+        generateValue: true  # Render auto-generates a secure value
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: CORS_ORIGIN
+        sync: false          # Set to your Vercel frontend URL
+      - key: APP_URL
+        sync: false          # Set to your Vercel frontend URL
+      - key: EMAIL_HOST
+        value: smtp.gmail.com
+      - key: EMAIL_PORT
+        value: 587
+      - key: EMAIL_USER
+        sync: false          # your.email@gmail.com
+      - key: EMAIL_PASS
+        sync: false          # Gmail App Password
+      - key: EMAIL_FROM
+        sync: false          # VendorHub <your.email@gmail.com>
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false          # From cloudinary.com dashboard
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+    healthCheckPath: /health
+    autoDeploy: true
