@@ -45,6 +45,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', generalLimiter);
 
 // Health check
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'OK',
+    message: 'VendorHub backend is running',
+    timestamp: new Date().toISOString(),
+    env: process.env.NODE_ENV || 'development',
+  });
+});
+
 app.get('/health', (req, res) => {
   res.status(200).json({
     status: 'OK',

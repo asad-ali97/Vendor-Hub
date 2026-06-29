@@ -101,8 +101,9 @@ git push -u origin main
 6. Click **Create Web Service**
 7. Wait 2–3 minutes for the build to finish
 8. Your backend URL will be: `https://vendorhub-backend.onrender.com`
-9. Test it: open `https://vendorhub-backend.onrender.com/health` in your browser
-   - You should see: `{"status":"OK",...}`
+9. Test it: open `https://vendorhub-backend.onrender.com/` in your browser
+   - You should see: `{"status":"OK","message":"VendorHub backend is running",...}`
+10. You can also check `https://vendorhub-backend.onrender.com/health` for the same status without the message field
 
 ---
 
